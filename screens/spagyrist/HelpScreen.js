@@ -9,6 +9,8 @@ const  HelpScreen = props => {
     )
 }
 
+
+
 const styles = StyleSheet.create({
     screen:{
         flex:1,

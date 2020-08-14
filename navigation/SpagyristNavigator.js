@@ -6,12 +6,14 @@ import Colors from '../Constants/Colors';
 import VideoOverViewScreen,{screenOptions as VideoOverviewScreenOptions} from '../screens/spagyrist/VideoOverviewScreen';
 import VideoDetailScreen ,{screenOptions as VideoDetailScreenOptions} from '../screens/spagyrist/VideoDetailScreen';
 import CategoryVideoScreen, {screenOptions as CategoryDetailScreenOptions}from '../screens/spagyrist/CategoryVideoScreen';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import SearchScreen from '../screens/spagyrist/SearchScreen';
 import MyListScreen from '../screens/spagyrist/MyListScreen';
 import HelpScreen from '../screens/spagyrist/HelpScreen';
 import CategoryOverViewScreen,{screenOptions as CategoryOverviewScreenOptions} from '../screens/spagyrist/CategoryOverViewScreen';
 import MyAccountScreen from '../screens/user/MyAccountScreen';
-import Icon from 'react-native-vector-icons/FontAwesome'
+import Icon from 'react-native-vector-icons/FontAwesome';
+import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 const defaultNavOptions = {
     headerStyle:{
         backgroundColor:Platform.OS === 'android' ? Colors.primary : ''
@@ -95,3 +97,35 @@ export const SpagyristNavigator = () => {
     )
 }
 
+const Tab = createBottomTabNavigator();
+
+export const TabNavigator = () => {
+    return(
+        <Tab.Navigator  screenOptions={({ route }) => ({
+            tabBarIcon: ({ focused, color, size }) => {
+              let iconName;
+  
+              if (route.name === 'Search') {
+                iconName = focused
+                  ? 'search'
+                  : 'search';
+              } else if (route.name === 'My List') {
+                iconName = focused ? 'playlist-add' : 'playlist-add';
+              }else if( route.name === 'Home'){
+                  iconName = focused ? 'home' : 'home'
+              }
+  
+              // You can return any component that you like here!
+              return <MaterialIcon name={iconName} size={size} color={color} />;
+            },
+          })}
+          tabBarOptions={{
+            activeTintColor: 'tomato',
+            inactiveTintColor: 'gray',
+          }}>
+          <Tab.Screen name="Home" component={SpagyristNavigator} />
+        <Tab.Screen name="Search" component={SearchScreen} />
+        <Tab.Screen name="My List" component={MyListScreen} />
+      </Tab.Navigator>
+    )
+}
