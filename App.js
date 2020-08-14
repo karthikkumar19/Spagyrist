@@ -15,14 +15,13 @@ import {
   Text,
 
 } from 'react-native';
-
-
+import 'react-native-gesture-handler';
+import AppNavigator from './navigation/AppNavigation';
 
 const App = props => {
   return(
-    <View style={styles.screen}>
-      <Text>app.js</Text>
-    </View>
+   
+     <AppNavigator/>
   )
 }
 
