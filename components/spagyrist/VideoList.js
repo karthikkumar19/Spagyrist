@@ -1,10 +1,10 @@
 import React from 'react';
-import {Image,Text,TouchableOpacity,View,StyleSheet,Dimensions} from 'react-native';
+import {Image,Text,TouchableNativeFeedback,View,StyleSheet,Dimensions} from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 const VideoList = props => {
     return(
-        <TouchableOpacity style={styles.videoScreen}>
+        <TouchableNativeFeedback onPress={props.onSelect} style={styles.videoScreen}>
             
             <View  style={styles.video}>
             <View style={styles.detailContainer}>
@@ -17,13 +17,12 @@ const VideoList = props => {
             </View>
            
             </View>
-        </TouchableOpacity>
+        </TouchableNativeFeedback>
     )
 }
 
 const styles = StyleSheet.create({
     videoScreen:{
-        margin:10,
     //  width:'100%',
 
     },
@@ -33,6 +32,7 @@ const styles = StyleSheet.create({
         shadowOffset:{width:0,height:2},
         shadowRadius:8,
         elevation:5,
+        margin:5,
         // borderRadius:10,
         backgroundColor:'white',
         height:100,
