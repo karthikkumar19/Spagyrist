@@ -1,25 +1,61 @@
-import React,{useState} from 'react';
-import {View,Text,StyleSheet} from 'react-native'; 
+import React,{useState,useEffect} from 'react';
+import {View,Text,StyleSheet,Dimensions,Button,ScrollView} from 'react-native'; 
 import {useSelector} from 'react-redux';
 import Video from 'react-native-video';
-import MediaControls,{PLAYER_STATES} from 'react-native-media-controls'; 
-import { VideosNavigator } from '../../navigation/SpagyristNavigator';
+import Orientation from 'react-native-orientation-locker';
+import MediaControls,{PLAYER_STATES} from 'react-native-media-controls';
+
 
 const  VideoDetailScreen = props => {
     const videoId = props.route.params.videoId;
     const video = useSelector(state => state.videos.videos.find(video => video.nid === videoId));
     console.log(video);
 
+    const videoRef = React.createRef();
+    const [state, setState] = useState({
+      fullscreen: false,
+      play: false,
+      currentTime: 0,
+      duration: 0,
+      showControls: true,
+    });
+//function 2
 
-//functions
+// useEffect(() => {
+//   Orientation.addOrientationListener(handleOrientation);
+
+//   return () => {
+//     Orientation.removeOrientationListener(handleOrientation);
+//   };
+// }, []);
+
+// function handleOrientation(orientation) {
+//   orientation === 'LANDSCAPE-LEFT' || orientation === 'LANDSCAPE-RIGHT'
+//     ? (setState(s => ({...s, fullscreen: true})), StatusBar.setHidden(true))
+//     : (setState(s => ({...s, fullscreen: false})),
+//       StatusBar.setHidden(false));
+// }
+
+// function handleFullscreen() {
+ 
+// }
+
+
+
+
+
+
+
+// functions
 
 let videoPlayer;
 const [currentTime,setCurrentTime] = useState(0);
 const [duration,setDuration] = useState(0);
+const [fullScreen,setFullScreen] = useState(false);
 const [isFullScreen,setIsFullScreen] = useState(false);
 const [isLoading,setIsLoading] = useState(true);
 const [isPaused,setIsPaused] = useState(true);
-const [fullScreenOrentiation,setFullScreenOrentitaion] = useState(true); 
+const [fullScreenOrentiation,setFullScreenOrentitaion] = useState('landscape'); 
 const [playerState,setPlayerState] = useState(PLAYER_STATES.PLAYING);
 const [screenType,setScreenType] = useState('contain');
 
@@ -73,9 +109,15 @@ const exitFullScreen = () => {
 const enterFullScreen = () => {};
 
 const onFullScreen = () => {
-  if (screenType == 'contain')
-  setScreenType('cover')
-  else setScreenType('contain')
+  // Orientation.getOrientation((err, orientation) => {
+  //   console.log(`Current Device Orientation: ${orientation}`);
+  // });
+  // orientation === 'LANDSCAPE-LEFT' || orientation === 'LANDSCAPE-RIGHT' 
+  // ?    Orientation.lockToPortrait() : Orientation.lockToLandscapeLeft()
+    setFullScreen(!fullScreen);
+  // if (screenType == 'contain')
+  // setScreenType('cover')
+  // else setScreenType('contain')
 };
 const renderToolbar = () => (
   <View>
@@ -86,28 +128,34 @@ const onSeeking = currentTime =>{
   setCurrentTime(currentTime)
 }
 
+const fullScreenPresent = () => {
+  console.log("present")
+}
 
+ 
 
 
 return (
     <>
       <View style={styles.container}>
-          <View style={styles.videoContainer}>
-          <Video
+        <ScrollView>
+        <View style={styles.videoContainer}>
+        <Video
       onEnd={onEnd}
+      style={ styles.mediaPlayer}
     //   fullscreenOrientation="landscape"
       onLoad={onLoad}
       poster={video.thumbnail_image}
       onLoadStart={onLoadStart}
       onProgress={onProgress}
-      
       paused={isPaused}
+      fullscreen={fullScreen}
       ref={videoPlayers => (videoPlayer = videoPlayers)}
       resizeMode={screenType}
+      fullscreenOrientation={fullScreenOrentiation}
       onFullScreen={isFullScreen}
-    //   onFullscreenPlayerDidPresent={isFullScreen}
+      onFullscreenPlayerDidPresent={fullScreenPresent}
       source={{ uri: video.video_url }}
-      style={styles.mediaPlayer}
       volume={10}
        />
        <MediaControls
@@ -115,8 +163,9 @@ return (
         duration={duration}
         isLoading={isLoading}
         mainColor="#333"
-        isFullScreen={isFullScreen}
-        onFullScreen={onFullScreen}
+        // isFullScreen={isFullScreen}
+        onFullScreen={
+          onFullScreen }
         onPaused={onPaused}
         onReplay={onReplay}
         onSeek={onSeek}
@@ -125,8 +174,8 @@ return (
         progress={currentTime}
         toolbar={renderToolbar()}
       />
-      </View>
-      <View style={styles.detailContainer}>
+        </View>
+        <View style={styles.detailContainer}>
           <Text style={styles.title}>{video.title}</Text>
           <View style={styles.horizontal}></View>
           <View style={styles.textContainer}>
@@ -142,17 +191,15 @@ return (
                   </View>
               </View>
           </View>
-      </View>
-          </View>
+          <Button title="Add To MyList"  />
+      </View> 
+         
+        </ScrollView>
+        
+    
+        </View>
+        
      
-      {/* <View style={{flex:1,alignItems:'center',justifyContent:'center'}}>
-       <Text style={styles.text}>Hello world!</Text>
-      </View> */}
-    {/* <View style={{flex:1,alignItems:'center',justifyContent:'center' }}>
-     
-      <MainScreen/>
-
-    </View> */}
     </>
   );
 
@@ -160,43 +207,43 @@ return (
 export const screenOptions = navData => {
     return{
         headerTitle:navData.route.params.videoTitle
-        // navData.navigation.getParam('productTitle')
     }
 }
 
 const styles = StyleSheet.create({
     container:{
         flex:1,
-        alignItems:'center',
 backgroundColor:'black'
       },
+     
       videoContainer:{
-          top:10,
-        width:'100%',
-        height:'40%',
+        
+        width:Dimensions.get('window').width,
+        height:Dimensions.get('window').height / 3
         // backgroundColor:'black'
 
       },
-      toolbar: {
-       marginTop: 30,
-       backgroundColor: 'white',
-       padding: 10,
-       borderRadius: 5,
-     },
-      mediaPlayer:{
-        width:'100%',
-        height:'100%',
-        // backgroundColor:'black'
-
-      },
+    //   toolbar: {
+    //    marginTop: 30,
+    //    backgroundColor: 'white',
+    //    padding: 10,
+    //    borderRadius: 5,
+    //  },
+     mediaPlayer: {
+     width:'100%',
+      height:'100%',
+    },
+   
       detailContainer:{
           width:'100%'
       },
+
       title:{
           color:'white',
           fontSize:20,
           textAlign:'center',
       },
+     
       horizontal:{
           borderBottomWidth:1,
           borderBottomColor:'white',
@@ -211,9 +258,13 @@ backgroundColor:'black'
       },
       infoContainer:{
           flexDirection:'row'
-      }
+      },
+     
+    
      
      
 })
 
 export default VideoDetailScreen;
+
+

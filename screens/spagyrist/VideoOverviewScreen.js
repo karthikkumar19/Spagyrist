@@ -38,6 +38,7 @@ const  VideoOverviewScreen = props => {
 <FlatList  data={industrial}   horizontal={true}
     //   contentContainerStyle={styles.container} 
       renderItem={itemData => <VideoList category={itemData.item.category} 
+      onSelect={() =>  {selectVideoHandler(itemData.item.nid,itemData.item.title)}}
         image={itemData.item.thumbnail_image}
        />} keyExtractor={item => item.nid} />
 </View>
