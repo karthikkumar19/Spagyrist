@@ -9,16 +9,8 @@ import MediaControls,{PLAYER_STATES} from 'react-native-media-controls';
 const  VideoDetailScreen = props => {
     const videoId = props.route.params.videoId;
     const video = useSelector(state => state.videos.videos.find(video => video.nid === videoId));
-    console.log(video);
 
-    const videoRef = React.createRef();
-    const [state, setState] = useState({
-      fullscreen: false,
-      play: false,
-      currentTime: 0,
-      duration: 0,
-      showControls: true,
-    });
+   
 //function 2
 
 // useEffect(() => {

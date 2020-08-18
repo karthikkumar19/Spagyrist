@@ -20,12 +20,13 @@ import 'react-native-gesture-handler';
 import AppNavigator from './navigation/AppNavigation';
 import { createStore, combineReducers ,applyMiddleware } from 'redux';
 import videosReducers from './store/reducers/Videos';
+import ReduxThunk from 'redux-thunk';
 
 const rootReducer = combineReducers({
   videos:videosReducers
 })
 
-const store = createStore(rootReducer);
+const store = createStore(rootReducer,applyMiddleware(ReduxThunk));
 
 const App = props => {
   return(
