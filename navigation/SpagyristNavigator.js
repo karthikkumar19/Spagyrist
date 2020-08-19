@@ -58,6 +58,8 @@ export const CategoryNavigator = () => {
     )
 }
 
+
+
 const SpagyristDrawerNavigator = createDrawerNavigator();
 
 export const SpagyristNavigator = () => {

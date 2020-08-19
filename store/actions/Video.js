@@ -9,6 +9,7 @@ export const fetchVideos = () => {
            await axios.get( 'http://smmentors.com/cms/vdod-web/web/api/vod/videos/en?_format=json')
         .then( response => {
             const resData = response.data;
+            console.log("resdata",resData)
             const loadedVideos = [];
             for(const key in resData){
                 console.log(key)
@@ -23,6 +24,7 @@ export const fetchVideos = () => {
                     )
                 )
             }
+            console.log("loaded",loadedVideos)
 
             dispatch({type:SET_VIDEOS,videos:loadedVideos})
 

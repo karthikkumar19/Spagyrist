@@ -15,7 +15,7 @@ const  VideoOverviewScreen = props => {
     const softSkill = useSelector(state => state.videos.videos.filter(video => video.category ===   "Soft Skill"));
     const welding = useSelector(state => state.videos.videos.filter(video => video.category ===  "Welding"));
     const videos = useSelector(state => state.videos.videos);
-    console.log(videos)
+console.log(videos)
 
     const dispatch = useDispatch();
     // const products = useSelector(state => state.products.availableProducts);
@@ -46,16 +46,16 @@ const  VideoOverviewScreen = props => {
         })
     },[dispatch, loadVideos])
 
-useEffect(() => {
-    const willFocusSub = props.navigation.addListener(
-        'willFocus',
-        loadVideos
-    );
+// useEffect(() => {
+//     const willFocusSub = props.navigation.addListener(
+//         'willFocus',
+//         loadVideos
+//     );
 
-    return () => {
-        willFocusSub.remove();
-    }
-},[loadVideos])
+//     return () => {
+//         willFocusSub.remove();
+//     }
+// },[loadVideos])
 
 
     const selectVideoHandler = (id,title) => {
