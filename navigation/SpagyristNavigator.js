@@ -57,6 +57,21 @@ export const SearchNavigator = () => {
     )
 }
 
+const MylistStackNavigator = createStackNavigator();
+
+export const MylistNavigator = () => {
+    return(
+        <MylistStackNavigator.Navigator screenOptions={defaultNavOptions} >
+            <MylistStackNavigator.Screen 
+            name="My List"  component={MyListScreen}
+             />
+             <MylistStackNavigator.Screen name="VideoDetail"
+            component={VideoDetailScreen} 
+            />
+        </MylistStackNavigator.Navigator>
+    )
+}
+
 const CategoryStackNavigator = createStackNavigator();
 
 export const CategoryNavigator = () => {
@@ -71,7 +86,6 @@ export const CategoryNavigator = () => {
             <CategoryStackNavigator.Screen name="VideoDetail"
             component={VideoDetailScreen} 
             options={VideoDetailScreenOptions} />
-
         </CategoryStackNavigator.Navigator>
     )
 }
@@ -124,7 +138,8 @@ const Tab = createBottomTabNavigator();
 
 export const TabNavigator = () => {
     return(
-        <Tab.Navigator  screenOptions={({ route }) => ({
+        <Tab.Navigator  
+           screenOptions={({ route }) => ({
             tabBarIcon: ({ focused, color, size }) => {
               let iconName;
   
@@ -145,10 +160,11 @@ export const TabNavigator = () => {
           tabBarOptions={{
             activeTintColor: 'tomato',
             inactiveTintColor: 'gray',
+            keyboardHidesTabBar: true
           }}>
           <Tab.Screen name="Home" component={SpagyristNavigator} />
         <Tab.Screen name="Search" component={SearchNavigator}  />
-        <Tab.Screen name="My List" component={MyListScreen} />
+        <Tab.Screen name="My List" component={MylistNavigator} />
       </Tab.Navigator>
     )
 }

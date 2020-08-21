@@ -53,7 +53,8 @@ const  SearchScreen = props => {
        <View style={styles.screen}>
            
         <Header   style={{backgroundColor:Colors.primary}}>
-            <View style={styles.searchBar}>
+           
+        <View style={styles.searchBar}>
             <Searchbar
       placeholder="Search"
       onChangeText={onChangeSearch}
@@ -61,11 +62,10 @@ const  SearchScreen = props => {
     />
            
             </View>
-         
         
         </Header>
-           
-           
+       
+           {searchQuery ? <Text>{searchQuery}</Text> : null}
             <View style={styles.flatlistContainer}>
    <FlatList  data={searchVideos} 
    horizontal={false}
@@ -109,6 +109,7 @@ const styles = StyleSheet.create({
     },
     searchBar:{
         flex:1,
+        
         marginHorizontal:2,
         marginVertical:2,
     },

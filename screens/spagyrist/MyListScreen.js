@@ -6,7 +6,7 @@ import {HeaderButtons, Item} from 'react-navigation-header-buttons';
 const  MyListScreen = props => {
     return (
        <View style={styles.screen}>
-           <Text>My List Screen</Text>
+           <Text>List is Empty! Add Some Videos! </Text>
        </View>
     )
 }
@@ -14,11 +14,7 @@ const  MyListScreen = props => {
 export const screenOptions = navData => {
     return{
         headerTitle: 'My List',
-        headerLeft : () => <HeaderButtons HeaderButtonComponent={Headerbutton}>
-        <Item title='Menu' iconName={'md-menu'} onPress={() => {
-            navData.navigation.toggleDrawer();
-        }} />
-    </HeaderButtons>,
+       
         // headerRight: () => <HeaderButtons HeaderButtonComponent={Headerbutton}>
         //     <Item title='Cart' iconName={'md-cart'} onPress={() => {
         //         navData.navigation.navigate('Cart')
