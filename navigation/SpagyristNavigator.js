@@ -7,7 +7,7 @@ import VideoOverViewScreen,{screenOptions as VideoOverviewScreenOptions} from '.
 import VideoDetailScreen ,{screenOptions as VideoDetailScreenOptions} from '../screens/spagyrist/VideoDetailScreen';
 import CategoryVideoScreen, {screenOptions as CategoryDetailScreenOptions}from '../screens/spagyrist/CategoryVideoScreen';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import SearchScreen from '../screens/spagyrist/SearchScreen';
+import SearchScreen, {screenOptions as SearchScreenOptions} from '../screens/spagyrist/SearchScreen';
 import MyListScreen from '../screens/spagyrist/MyListScreen';
 import HelpScreen from '../screens/spagyrist/HelpScreen';
 import CategoryOverViewScreen,{screenOptions as CategoryOverviewScreenOptions} from '../screens/spagyrist/CategoryOverViewScreen';
@@ -42,6 +42,18 @@ export const VideosNavigator = () => {
     )
 }
 
+const SearchStackNavigator = createStackNavigator();
+
+export const SearchNavigator = () => {
+    return(
+        <SearchStackNavigator.Navigator screenOptions={defaultNavOptions}>
+            <SearchStackNavigator.Screen 
+            name="Search" component={SearchScreen}
+            options={SearchScreenOptions} />
+        </SearchStackNavigator.Navigator>
+    )
+}
+
 const CategoryStackNavigator = createStackNavigator();
 
 export const CategoryNavigator = () => {
@@ -53,6 +65,9 @@ export const CategoryNavigator = () => {
             <CategoryStackNavigator.Screen name="CategoryName"
             component={CategoryVideoScreen} 
             options={CategoryDetailScreenOptions} />
+            <CategoryStackNavigator.Screen name="VideoDetail"
+            component={VideoDetailScreen} 
+            options={VideoDetailScreenOptions} />
 
         </CategoryStackNavigator.Navigator>
     )
@@ -87,6 +102,7 @@ export const SpagyristNavigator = () => {
          <Icon name='list-ul' size={23} color={props.Color} /> )
                         }
             } />
+            
               {/* <ShopDrawerNavigator.Screen name="Admin" 
             component={AdminNavigator}
             options={
@@ -98,6 +114,8 @@ export const SpagyristNavigator = () => {
         </SpagyristDrawerNavigator.Navigator>
     )
 }
+
+
 
 const Tab = createBottomTabNavigator();
 
@@ -126,7 +144,7 @@ export const TabNavigator = () => {
             inactiveTintColor: 'gray',
           }}>
           <Tab.Screen name="Home" component={SpagyristNavigator} />
-        <Tab.Screen name="Search" component={SearchScreen} />
+        <Tab.Screen name="Search" component={SearchNavigator}  />
         <Tab.Screen name="My List" component={MyListScreen} />
       </Tab.Navigator>
     )

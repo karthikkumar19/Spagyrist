@@ -13,17 +13,24 @@ import Welding from '../../assets/images/welding.jpg';
 
 
 const  CategoryOverViewScreen = props => {
-    return (
-       
+
+    const selectCategoryHandler = (category) => {
+        props.navigation.navigate('CategoryName',{
+           
+            categoryName:category
+        })
+    }
+
+    return (      
  <ScrollView >
       <View style={styles.screen}>
-        <CategoryList onSelect={() => {}} image={Construction} title="Construction" />
-        <CategoryList onSelect={() => {}} image={Industrial}  title="Industrial Safety" />
-        <CategoryList onSelect={() => {}} image={Oilgas}  title="Oil&Gas Industry" />
-        <CategoryList onSelect={() => {}} image={Welding}  title="Welding" />
-        <CategoryList onSelect={() => {}} image={Cnc}  title="CNC" />
-        <CategoryList onSelect={() => {}} image={Painting}  title="Painting" />
-        <CategoryList onSelect={() => {}} image={Softskill} title="Soft Skill" />
+        <CategoryList onSelect={() => {selectCategoryHandler("Construction")}} image={Construction} title="Construction" />
+        <CategoryList onSelect={() => {selectCategoryHandler("Industrial Safety")}} image={Industrial}  title="Industrial Safety" />
+        <CategoryList onSelect={() => {selectCategoryHandler("Oil &amp; Gas Industry")}} image={Oilgas}  title="Oil&Gas Industry" />
+        <CategoryList onSelect={() => {selectCategoryHandler("Welding")}} image={Welding}  title="Welding" />
+        <CategoryList onSelect={() => {selectCategoryHandler("Cnc")}} image={Cnc}  title="CNC" />
+        <CategoryList onSelect={() => {selectCategoryHandler("Painting")}} image={Painting}  title="Painting" />
+        <CategoryList onSelect={() => {selectCategoryHandler("Soft Skill")}} image={Softskill} title="Soft Skill" />
 
 
         </View>

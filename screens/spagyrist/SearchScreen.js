@@ -10,15 +10,14 @@ const  SearchScreen = props => {
        </View>
     )
 }
-
 export const screenOptions = navData => {
     return{
         headerTitle: 'Search',
-        headerLeft : () => <HeaderButtons HeaderButtonComponent={Headerbutton}>
-        <Item title='Menu' iconName={'md-menu'} onPress={() => {
-            navData.navigation.toggleDrawer();
-        }} />
-    </HeaderButtons>,
+    //     headerLeft : () => <HeaderButtons HeaderButtonComponent={Headerbutton}>
+    //     <Item title='Menu' iconName={'md-menu'} onPress={() => {
+    //         navData.navigation.toggleDrawer();
+    //     }} />
+    // </HeaderButtons>,
         // headerRight: () => <HeaderButtons HeaderButtonComponent={Headerbutton}>
         //     <Item title='Cart' iconName={'md-cart'} onPress={() => {
         //         navData.navigation.navigate('Cart')

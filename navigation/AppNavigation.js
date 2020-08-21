@@ -3,7 +3,7 @@ import React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 // import {ShopNavigator,AuthNavigator} from './ShopNavigator';
 // import StartupScreen from '../screens/StartupScreen';
-import {TabNavigator} from '../navigation/SpagyristNavigator';
+import {SpagyristNavigator,TabNavigator} from '../navigation/SpagyristNavigator';
 
 
 
@@ -13,7 +13,7 @@ const AppNavigator = props => {
 
   
     return <NavigationContainer>
-        <TabNavigator />
+       <TabNavigator/>
           {/* {isAuth && <ShopNavigator/> }
 { !isAuth && didTryAutoLogin && <AuthNavigator/> }
           {!isAuth && !didTryAutoLogin && <StartupScreen/> } */}

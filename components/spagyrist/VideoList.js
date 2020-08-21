@@ -6,14 +6,14 @@ const VideoList = props => {
     return(
         <TouchableNativeFeedback onPress={props.onSelect} style={styles.videoScreen}>
             
-            <View  style={styles.video}>
-            <View style={styles.detailContainer}>
+            <View  style={[styles.video,props.style]}>
            
-            <View style={styles.imageContainer}>
+           
+            <View style={[styles.imageContainer,props.thumb]}>
             <Icon name='play-circle' style={styles.icon} size={28} color="white" />
             <Image source={{uri:props.image}} style={styles.thumbnail} />
 
-            </View>
+           
             </View>
            
             </View>
