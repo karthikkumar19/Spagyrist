@@ -46,10 +46,13 @@ const SearchStackNavigator = createStackNavigator();
 
 export const SearchNavigator = () => {
     return(
-        <SearchStackNavigator.Navigator screenOptions={defaultNavOptions}>
+        <SearchStackNavigator.Navigator screenOptions={defaultNavOptions} >
             <SearchStackNavigator.Screen 
-            name="Search" component={SearchScreen}
-            options={SearchScreenOptions} />
+            name="s" options={{headerShown: false}} component={SearchScreen}
+             />
+             <SearchStackNavigator.Screen name="VideoDetail"
+            component={VideoDetailScreen} 
+            />
         </SearchStackNavigator.Navigator>
     )
 }

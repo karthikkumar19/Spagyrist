@@ -1,6 +1,6 @@
 import React from 'react';
 import {HeaderButton} from 'react-navigation-header-buttons';
-import Icon from 'react-native-vector-icons/Ionicons';
+import Icon from 'react-native-vector-icons/FontAwesome';
 import {Platform} from 'react-native';
 
 import Colors from '../../Constants/Colors';

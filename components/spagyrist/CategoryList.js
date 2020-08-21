@@ -15,7 +15,7 @@ const CategoryList = props => {
         <Touchablecmp onPress={props.onSelect} >
  <View style={styles.Product}>
      
-            <ImageBackground blurRadius={5} style={styles.image} source={ props.image}>
+            <ImageBackground blurRadius={5} style={styles.image} source={{uri:props.image}}>
             <Text style={styles.title}>{props.title}</Text>
 
             </ImageBackground>

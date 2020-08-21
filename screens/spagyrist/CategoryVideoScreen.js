@@ -19,7 +19,7 @@ const  CategoryVideoScreen = props => {
         if( videos.length === 0){
             return(
                 <View style={styles.centered}>
-                    <Text>No Videos Found in this Caetgory</Text>
+                    <Text style={{color:'white'}}>No Videos Found in this Category</Text>
                 </View>
             )
         }
@@ -48,15 +48,19 @@ export const screenOptions = navData => {
 const styles = StyleSheet.create({
     screen:{
         flex:1,
-       
+
     },
     centered:{
         flex:1,
         justifyContent:'center',
-        alignItems:'center'
+        alignItems:'center',
+        backgroundColor:'black'
+        
     },
     flatlistContainer:{
         flex:1,
+        backgroundColor:'black'
+
     },
     video:{
         width:Dimensions.get('window').width / 2.2,

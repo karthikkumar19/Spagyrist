@@ -85,7 +85,7 @@ console.log(videos)
         if(!loading && videos.length === 0){
             return(
                 <View style={styles.centered}>
-                    <Text>No products</Text>
+                    <Text>No Videos Found</Text>
                 </View>
             )
         }
@@ -118,6 +118,8 @@ console.log(videos)
 <FlatList  data={oil}   horizontal={true}
     //   contentContainerStyle={styles.container} 
       renderItem={itemData => <VideoList category={itemData.item.category} 
+      onSelect={() =>  {selectVideoHandler(itemData.item.nid,itemData.item.title)}}
+
         image={itemData.item.thumbnail_image}
        />} keyExtractor={item => item.nid} />
 
@@ -128,6 +130,7 @@ console.log(videos)
        <FlatList  data={softSkill}   horizontal={true}
     //   contentContainerStyle={styles.container} 
       renderItem={itemData => <VideoList category={itemData.item.category} 
+      onSelect={() =>  {selectVideoHandler(itemData.item.nid,itemData.item.title)}}
         image={itemData.item.thumbnail_image}
        />} keyExtractor={item => item.nid} />
        </View>
@@ -136,7 +139,10 @@ console.log(videos)
  <Text style={styles.title}>{welding[0].category}</Text> 
 <FlatList  data={welding}   horizontal={true}
     //   contentContainerStyle={styles.container} 
-      renderItem={itemData => <VideoList category={itemData.item.category} 
+    onSelect={() =>  {selectVideoHandler(itemData.item.nid,itemData.item.title)}}
+      renderItem={itemData => <VideoList category={itemData.item.category}
+      onSelect={() =>  {selectVideoHandler(itemData.item.nid,itemData.item.title)}}
+ 
         image={itemData.item.thumbnail_image}
        />} keyExtractor={item => item.nid} />
        </View>
@@ -155,7 +161,7 @@ export const screenOptions = navData => {
     return{
         headerTitle: 'Home',
         headerLeft : () => <HeaderButtons HeaderButtonComponent={Headerbutton}>
-        <Item title='Menu' iconName={'md-menu'} onPress={() => {
+        <Item title='Menu' iconName={'bars'} onPress={() => {
             navData.navigation.toggleDrawer();
         }} />
     </HeaderButtons>,
@@ -175,7 +181,9 @@ const styles = StyleSheet.create({
    centered:{
        flex:1,
      justifyContent:'center',
-     alignItems:'center'  
+     alignItems:'center' ,
+     backgroundColor:'black'
+ 
    },
    title:{
        fontSize:20,
