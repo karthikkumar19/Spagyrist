@@ -49,9 +49,11 @@ export const SearchNavigator = () => {
         <SearchStackNavigator.Navigator screenOptions={defaultNavOptions} >
             <SearchStackNavigator.Screen 
             name="s" options={{headerShown: false}} component={SearchScreen}
+            
              />
              <SearchStackNavigator.Screen name="VideoDetail"
             component={VideoDetailScreen} 
+            options={VideoDetailScreenOptions}
             />
         </SearchStackNavigator.Navigator>
     )
