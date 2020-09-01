@@ -1,22 +1,21 @@
 import React from 'react';
-// import {useSelector} from 'react-redux';
+import {useSelector} from 'react-redux';
 import {NavigationContainer} from '@react-navigation/native';
-// import {ShopNavigator,AuthNavigator} from './ShopNavigator';
 // import StartupScreen from '../screens/StartupScreen';
-import {SpagyristNavigator,TabNavigator} from '../navigation/SpagyristNavigator';
+import {AuthNavigator,TabNavigator} from '../navigation/SpagyristNavigator';
 
 
 
 const AppNavigator = props => {
-// const isAuth = useSelector(state => !!state.auth.token);
-// const didTryAutoLogin = useSelector(state => state.auth.didTryAutoLogin);
+const isAuth = useSelector(state => !!state.auth.token);
+const didTryAutoLogin = useSelector(state => state.auth.didTryAutoLogin);
 
   
     return <NavigationContainer>
-       <TabNavigator/>
-          {/* {isAuth && <ShopNavigator/> }
-{ !isAuth && didTryAutoLogin && <AuthNavigator/> }
-          {!isAuth && !didTryAutoLogin && <StartupScreen/> } */}
+      
+           {isAuth && <TabNavigator/> }
+ { !isAuth &&  <AuthNavigator/> }
+         {/* {!isAuth && !didTryAutoLogin && <StartupScreen/> }   */}
     </NavigationContainer>
 }
 

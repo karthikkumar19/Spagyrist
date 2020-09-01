@@ -10,8 +10,9 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import SearchScreen, {screenOptions as SearchScreenOptions} from '../screens/spagyrist/SearchScreen';
 import MyListScreen from '../screens/spagyrist/MyListScreen';
 import HelpScreen from '../screens/spagyrist/HelpScreen';
+import AuthScreen from '../screens/user/AuthScreen';
 import CategoryOverViewScreen,{screenOptions as CategoryOverviewScreenOptions} from '../screens/spagyrist/CategoryOverViewScreen';
-import MyAccountScreen from '../screens/user/MyAccountScreen';
+import MyAccountScreen,{screenOptions as MyAccountScreenOptions} from '../screens/user/MyAccountScreen';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 const defaultNavOptions = {
@@ -92,6 +93,18 @@ export const CategoryNavigator = () => {
     )
 }
 
+const MyAccountStackNavigator = createStackNavigator();
+
+export const MyAccountNavigator = () => {
+    return(
+        <MyAccountStackNavigator.Navigator screenOptions={defaultNavOptions}>
+            <MyAccountStackNavigator.Screen name="My Account"
+            component={MyAccountScreen}
+           options={MyAccountScreenOptions} />
+        </MyAccountStackNavigator.Navigator>
+    )
+}
+   
 
 
 const SpagyristDrawerNavigator = createDrawerNavigator();
@@ -119,6 +132,13 @@ export const SpagyristNavigator = () => {
                 {
              drawerIcon: props => ( 
          <Icon name='list-ul' size={23} color={props.Color} /> )
+                        }
+            } />
+             <SpagyristDrawerNavigator.Screen name="My Account" 
+            component={MyAccountNavigator} options={
+                {
+             drawerIcon: props => ( 
+         <Icon name='user-circle' size={23} color={props.Color} /> )
                         }
             } />
             
@@ -168,5 +188,18 @@ export const TabNavigator = () => {
         <Tab.Screen name="Search" component={SearchNavigator}  />
         <Tab.Screen name="My List" component={MylistNavigator} />
       </Tab.Navigator>
+    )
+}
+
+const AuthStackNavigator = createStackNavigator();
+
+export const AuthNavigator = () => {
+    return(
+        <AuthStackNavigator.Navigator screenOptions={defaultNavOptions}>
+            <AuthStackNavigator.Screen name="Auth" 
+            options={{headerShown: false}}
+            component={AuthScreen}
+             />
+        </AuthStackNavigator.Navigator>
     )
 }

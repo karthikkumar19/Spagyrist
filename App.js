@@ -20,10 +20,12 @@ import 'react-native-gesture-handler';
 import AppNavigator from './navigation/AppNavigation';
 import { createStore, combineReducers ,applyMiddleware } from 'redux';
 import videosReducers from './store/reducers/Videos';
+import authReducers from './store/reducers/Auth';
 import ReduxThunk from 'redux-thunk';
 
 const rootReducer = combineReducers({
-  videos:videosReducers
+  videos:videosReducers,
+  auth:authReducers
 })
 
 const store = createStore(rootReducer,applyMiddleware(ReduxThunk));
