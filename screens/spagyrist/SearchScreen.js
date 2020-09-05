@@ -78,18 +78,7 @@ image={itemData.item.thumbnail_image}
        </View>
     )
 }
-// export const screenOptions = navData => {
-//     return{
-//         headerTitle: 'Search',
-//     //     headerLeft : () => <HeaderButtons HeaderButtonComponent={Headerbutton}>
-//     //     <Item title='Menu' iconName={'md-menu'} onPress={() => {
-//     //         navData.navigation.toggleDrawer();
-//     //     }} />
-//     // </HeaderButtons>,
-       
-//     }
-   
-// }
+
 
 const styles = StyleSheet.create({
     centered:{

@@ -7,9 +7,9 @@ import VideoOverViewScreen,{screenOptions as VideoOverviewScreenOptions} from '.
 import VideoDetailScreen ,{screenOptions as VideoDetailScreenOptions} from '../screens/spagyrist/VideoDetailScreen';
 import CategoryVideoScreen, {screenOptions as CategoryDetailScreenOptions}from '../screens/spagyrist/CategoryVideoScreen';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import SearchScreen, {screenOptions as SearchScreenOptions} from '../screens/spagyrist/SearchScreen';
+import SearchScreen from '../screens/spagyrist/SearchScreen';
 import MyListScreen from '../screens/spagyrist/MyListScreen';
-import HelpScreen from '../screens/spagyrist/HelpScreen';
+import HelpScreen , {screenOptions as HelpScreenOptions} from '../screens/spagyrist/HelpScreen';
 import AuthScreen from '../screens/user/AuthScreen';
 import CategoryOverViewScreen,{screenOptions as CategoryOverviewScreenOptions} from '../screens/spagyrist/CategoryOverViewScreen';
 import MyAccountScreen,{screenOptions as MyAccountScreenOptions} from '../screens/user/MyAccountScreen';
@@ -107,6 +107,18 @@ export const MyAccountNavigator = () => {
         </MyAccountStackNavigator.Navigator>
     )
 }
+
+const HelpStackNavigator = createStackNavigator();
+
+export const HelpNavigator = () => {
+    return(
+       <HelpStackNavigator.Navigator screenOptions={defaultNavOptions}>
+          <HelpStackNavigator.Screen name='Help'
+          component={HelpScreen} 
+          options={HelpScreenOptions} />
+       </HelpStackNavigator.Navigator>
+    )
+}
    
 
 
@@ -183,11 +195,21 @@ export const SpagyristNavigator = () => {
                         }
             } />
              <SpagyristDrawerNavigator.Screen name="My Account" 
-            component={MyAccountNavigator} options={
+            component={MyAccountNavigator}  options={
+              
                 {
              drawerIcon: props => ( 
          <Icon name='user-circle' size={23} color={props.Color} /> )
                         }
+            } />
+
+            <SpagyristDrawerNavigator.Screen name="Help"
+            component={HelpNavigator} options={
+              {
+                drawerIcon:props => (
+                  <Icon name='user-circle' size={23} color={props.color} />
+                )
+              }
             } />
             
               {/* <ShopDrawerNavigator.Screen name="Admin" 
