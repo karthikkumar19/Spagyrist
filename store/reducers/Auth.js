@@ -20,7 +20,7 @@ export default (state = initialState,action) => {
         //         }
         case AUTHENTICATE:
             return{
-                token:action.token,
+                token:action.password,
                 userId:action.userId,
                 didTryAutoLogin:true
             }

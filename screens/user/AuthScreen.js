@@ -1,14 +1,43 @@
 import React from 'react';
 import {View,Text,StyleSheet,TextInput,KeyboardAvoidingView,
     Keyboard,TouchableWithoutFeedback,Button} from 'react-native'; 
+    import {useDispatch} from 'react-redux';
+    import * as authActions from '../../store/actions/auth';
 
 const  AuthScreen = props => {
+    const dispatch = useDispatch();
+
+    const authHandler =  () => {
+        let action;
+        dispatch(authActions.login('karthik','karthik'))
+        // if (isSignup) {
+        //   action = authActions.signup(
+        //     formState.inputValues.email,
+        //     formState.inputValues.password
+        //   );
+        // } else {
+        //   action = authActions.login(
+        //     formState.inputValues.email,
+        //     formState.inputValues.password
+        //   );
+        // }
+        // setError(null);
+        // setLoading(true);
+        // try{
+        //   await dispatch(action);
+        //   // props.navigation.navigate('Shop');
+        // } catch (err) {
+        //     setError(err.message);
+        //     setLoading(false);
+        // }
+      };
+
     return (
        <KeyboardAvoidingView  keyboardVerticalOffset={0}
         style={styles.screen}>
             <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
             <View style={styles.authContainer}>
-                <Text style={styles.header}>SPAGYRIST MENTORS LAB</Text>
+                <Text style={styles.header}>SPAGYRIST MENTORS{"\n"}LAB</Text>
                 <View style={styles.secheaderContainer}>
                 <Text style={styles.secondHeader}>LOGIN TO ACCESS YOUR </Text>
                  <Text style={styles.secondHeader}>VIDEO COURSES</Text>
@@ -32,7 +61,7 @@ const  AuthScreen = props => {
         required
         style={styles.input}
         minLength={5}
-        placeholder='Password'
+        placeholder='password'
          autoCaptialize='none' 
         errorText='Plese enter the vaild Password'
         // onInputChange={inputChangeHandler}
@@ -43,6 +72,7 @@ const  AuthScreen = props => {
               title='LOG IN'
                 // title={`Switch to ${isSignup ? 'Login' : 'Sign Up'}`}
                 color='orange'
+                onPress={authHandler}
                 // onPress={() => {
                 //   setIsSignup(prevState => !prevState);
                 // }}

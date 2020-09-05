@@ -1,7 +1,7 @@
 import React from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
 import {createDrawerNavigator,DrawerItemList} from '@react-navigation/drawer';
-import {Platform} from 'react-native';
+import {Platform, SafeAreaView, Button, View,Dimensions,StyleSheet,Text,ScrollView,TouchableOpacity} from 'react-native';
 import Colors from '../Constants/Colors';
 import VideoOverViewScreen,{screenOptions as VideoOverviewScreenOptions} from '../screens/spagyrist/VideoOverviewScreen';
 import VideoDetailScreen ,{screenOptions as VideoDetailScreenOptions} from '../screens/spagyrist/VideoDetailScreen';
@@ -15,6 +15,9 @@ import CategoryOverViewScreen,{screenOptions as CategoryOverviewScreenOptions} f
 import MyAccountScreen,{screenOptions as MyAccountScreenOptions} from '../screens/user/MyAccountScreen';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
+import {useDispatch} from 'react-redux';
+import * as authActions from '../store/actions/auth';
+
 const defaultNavOptions = {
     headerStyle:{
         backgroundColor:Platform.OS === 'android' ? Colors.primary : ''
@@ -109,11 +112,56 @@ export const MyAccountNavigator = () => {
 
 const SpagyristDrawerNavigator = createDrawerNavigator();
 
+const styles = StyleSheet.create({
+    item: {
+      flexDirection: 'row',
+      alignItems: 'center',
+      backgroundColor:'#d43545',
+      width:'99%',
+      borderRadius:8,
+      marginHorizontal:2,
+      marginVertical:3
+      
+    },
+    label: {
+      margin: 16,
+      fontWeight: 'bold',
+      color: 'rgba(0, 0, 0, .87)',
+    },
+    iconContainer: {
+      marginHorizontal: 16,
+      width: 24,
+      alignItems: 'center',
+    },
+    icon: {
+      width: 24,
+      height: 24,
+    }
+  });
+
 export const SpagyristNavigator = () => {
-    // const dispatch = useDispatch();
+    const dispatch = useDispatch();
 
     return (
-        <SpagyristDrawerNavigator.Navigator 
+        <SpagyristDrawerNavigator.Navigator drawerContent={
+            props => {
+                        return <ScrollView contentContainerStyle={{flex: 1,  flexDirection: 'column', justifyContent: 'space-between' }}>
+                        <SafeAreaView forceInset={{ top: 'always', horizontal: 'never' }}>
+                          <DrawerItemList {...props} />
+                        </SafeAreaView>
+                        <TouchableOpacity onPress={() => {
+                            dispatch(authActions.logout())
+                        }}>
+                          <View style={styles.item}>
+                              <View style={styles.iconContainer}>
+                              <Icon name='sign-out' size={23} color={props.Color} />
+                              </View>
+                            <Text style={styles.label}>Logout</Text>
+                          </View>
+                        </TouchableOpacity>
+                      </ScrollView>
+                    }
+        }
         drawerContentOptions={
             {
                 activeTintColor:Colors.primary
@@ -203,3 +251,4 @@ export const AuthNavigator = () => {
         </AuthStackNavigator.Navigator>
     )
 }
+
