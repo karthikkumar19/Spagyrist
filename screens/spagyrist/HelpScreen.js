@@ -12,8 +12,8 @@ const  HelpScreen = props => {
            <Image style={styles.image} source={{uri:'help1'}} />
            
            <Text style={styles.header}>Need Some Helps?</Text>
-           <Text style={{fontSize:18,fontWeight:'bold'}}>Contact us</Text>
-           <Text style={{marginVertical:10,marginHorizontal:45}}>Call us or Send a message and We'll respond you as soon as possible!</Text>
+           <Text style={{fontSize:18,fontWeight:'bold',color:'white'}}>Contact us</Text>
+           <Text style={{marginVertical:10,marginHorizontal:50,color:'white'}}>Call us or Send a message and We'll respond you as soon as possible!</Text>
            </View>
               <TouchableWithoutFeedback onPress={() => {
                   Linking.openURL(`tel:${9372012300}`)
@@ -54,7 +54,8 @@ export const screenOptions = navData => {
 const styles = StyleSheet.create({
     screen:{
         flex:1,
-       alignItems:'center'
+       alignItems:'center',
+       backgroundColor:'black'
     },
     headerContainer:{
         alignItems:'center',
@@ -66,7 +67,8 @@ const styles = StyleSheet.create({
     },
     header:{
         fontSize:22,
-        fontWeight:'bold'
+        fontWeight:'bold',
+        color:'white'
     },
     buttonContainer:{
         flexDirection:'row',
@@ -80,7 +82,8 @@ const styles = StyleSheet.create({
     },
     text:{
         marginHorizontal:15,
-        fontSize:15
+        fontSize:15,
+        color:'white'
     }
 })
 

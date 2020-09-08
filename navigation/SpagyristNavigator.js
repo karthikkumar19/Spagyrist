@@ -13,6 +13,7 @@ import HelpScreen , {screenOptions as HelpScreenOptions} from '../screens/spagyr
 import AuthScreen from '../screens/user/AuthScreen';
 import CategoryOverViewScreen,{screenOptions as CategoryOverviewScreenOptions} from '../screens/spagyrist/CategoryOverViewScreen';
 import MyAccountScreen,{screenOptions as MyAccountScreenOptions} from '../screens/user/MyAccountScreen';
+import EditUserScreen , {screenOptions as EditUserScreenOptions} from '../screens/user/EditUserScreen';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 import {useDispatch} from 'react-redux';
@@ -104,6 +105,9 @@ export const MyAccountNavigator = () => {
             <MyAccountStackNavigator.Screen name="My Account"
             component={MyAccountScreen}
            options={MyAccountScreenOptions} />
+            <MyAccountStackNavigator.Screen name="Edit Profile"
+            component={EditUserScreen}
+           options={EditUserScreenOptions} />
         </MyAccountStackNavigator.Navigator>
     )
 }
@@ -199,7 +203,7 @@ export const SpagyristNavigator = () => {
               
                 {
              drawerIcon: props => ( 
-         <Icon name='user-circle' size={23} color={props.Color} /> )
+         <Icon name='user' size={23} color={props.Color} /> )
                         }
             } />
 
@@ -207,7 +211,7 @@ export const SpagyristNavigator = () => {
             component={HelpNavigator} options={
               {
                 drawerIcon:props => (
-                  <Icon name='user-circle' size={23} color={props.color} />
+                  <Icon name='comments' size={23} color={props.Color} />
                 )
               }
             } />
